@@ -1,0 +1,2 @@
+total_files,whisper_mean_runtime,whisper_mean_wer,wav2vec2_mean_runtime,wav2vec2_mean_wer
+100,5.343,3.296,1.167,0.532

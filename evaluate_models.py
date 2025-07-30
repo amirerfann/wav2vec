@@ -7,12 +7,10 @@ from whisper_transcriber import WhisperTranscriber
 from wav2vec2_corrector import Wav2Vec2Corrector
 from evaluate import load
 
-# مسیرهای ورودی
 CLIP_DIR = Path("mini_corpus/clips")
 TSV_PATH = Path("mini_corpus/validated.tsv")
 OUTPUT_CSV = Path("evaluation_results.csv")
 
-# بارگذاری ground truth
 def load_ground_truths(tsv_path):
     gt_map = {}
     with open(tsv_path, encoding="utf-8") as f:
@@ -24,12 +22,10 @@ def load_ground_truths(tsv_path):
             gt_map[file_name] = text
     return gt_map
 
-# محاسبه WER
 wer_metric = load("wer")
 def wer(reference, hypothesis):
     return wer_metric.compute(predictions=[hypothesis], references=[reference])
 
-# اجرای پردازش و ذخیره نتایج
 def run_batch_evaluation():
     gt_map = load_ground_truths(TSV_PATH)
     whisper = WhisperTranscriber()
